@@ -22,7 +22,7 @@ title: Home
     </p>
     <p style="text-align:center">
         <a href="https://goo.gl/maps/1w4q5dFaZToqSxLV7">
-            <img src="https://i.imgur.com/qPKr1JB.png" alt="lake oroville" class="center" style="width:300px;" ></img>
+            <img src="https://i.imgur.com/qPKr1JB.png" alt="lake oroville" class="center" style="width:400px;" >
         </a>
     </p>
     <p style="text-align:center">
