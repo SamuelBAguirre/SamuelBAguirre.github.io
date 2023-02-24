@@ -66,41 +66,6 @@ title: Home
     <p style="text-align:center">
         <img src="resources/thresh_image.png" style="width:560px">
     </p>
-    The above image was generated with the following code block:
-
-
-```
-from skimage import data
-from skimage.filters import try_all_threshold
-from skimage.filters import threshold_minimum
-
-est_surface_areas = []
-binary_images = []
-
-for d, i in ndwi_img_lst:
-    thresh = threshold_minimum(i)
-    binary = i > thresh
-    
-    binary_images.append(binary)
-    
-    estimated_surface_area = (binary.flatten().sum() * (30 ** 2))
-    est_surface_areas += [(d, estimated_surface_area)]
-
-    fig, axes = plt.subplots(ncols=2, figsize=(8, 3))
-    ax = axes.ravel()
-
-    ax[0].imshow(i, cmap=plt.cm.gray)
-    ax[0].set_title('Orginal: {}'.format(d))
-
-    ax[1].imshow(binary, cmap=plt.cm.gray)
-    ax[1].set_title('Result: {}\nEstimated Surface Area: {} meters squared'.format(d, estimated_surface_area))
-
-    for a in ax:
-        a.axis('off')
-
-    plt.show()
-```
-</p>
 
 
 ## **3. Results**
@@ -130,29 +95,6 @@ for d, i in ndwi_img_lst:
 </p>
 <p style="text-align:center">
     <img src="resources/0.7.png">
-</p>
-<p>
-    The above image was generated with the following code block, please note that we looked at various thresholds and decided that 0.7 made the most sense.
-    
-    for thresh in [.5, .6, .7, .8, .9, .95]:
-        avg_pixel = np.mean(t, 0)
-        
-        perm = avg_pixel > thresh # gets average of each pixel across all 80 images
-        ephemeral = np.where((avg_pixel > 0.1) & (avg_pixel <= thresh), avg_pixel, 0)
-        
-        esa_perm = (perm.flatten().sum() * (30 ** 2)) # estimates surface area for permanent water
-        esa_ephemeral = (ephemeral.flatten().sum() * (30 ** 2)) # estimates surface area for ephemeral water
-
-        fig, axes = plt.subplots(ncols=1, figsize=(8, 5))
-
-        axes.imshow(perm, cmap=plt.cm.Blues)
-        axes.set_title('Permanent Water Threshold: {}'.format(thresh))
-        
-        axes.imshow(ephemeral, cmap=plt.cm.Reds, alpha=0.35)
-        axes.set_title('Permanent Water Threshold: {}'.format(thresh))
-            
-        plt.show()
-
 </p>
 
 
