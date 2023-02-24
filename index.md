@@ -66,7 +66,7 @@ title: Home
     <p style="text-align:center">
         <img src="resources/thresh_image.png" style="width:560px">
     </p>
-
+</p>
 
 ## **3. Results**
 <p style="text-align:center">
