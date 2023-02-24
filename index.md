@@ -22,7 +22,7 @@ title: Home
     </p>
     <p style="text-align:center">
         <a href="https://goo.gl/maps/1w4q5dFaZToqSxLV7">
-            <img src="https://i.imgur.com/qPKr1JB.png" alt="lake oroville" class="center" style="width:400px;" >
+            <img src="resources/oroville_sc.png" alt="lake oroville" class="center" style="width:400px;" >
         </a>
     </p>
     <p style="text-align:center">
@@ -52,14 +52,118 @@ title: Home
 
 ### **2.1 Water Detection**
 
+<p>
+    In order to classify water and non-water areas we used an image processing technique called thresholding. In our implementation we utilized the Scikit Image library to determine the thresholds for water and non-water areas.  This method created a clear separation between the water and non-water areas.
+    <p style="text-align:center">
+        <b>NDWI Image</b>
+    </p>
+    <p style="text-align:center">
+        <img src="resources/ndwi_image.png" style="width:500px">
+    </p>
+    <p style="text-align:center">
+        <b>SciKit Image Thresholded Image</b>
+    </p>
+    <p style="text-align:center">
+        <img src="resources/thresh_image.png" style="width:560px">
+    </p>
+    The above image was generated with the following code block:
+
+
+```
+from skimage import data
+from skimage.filters import try_all_threshold
+from skimage.filters import threshold_minimum
+
+est_surface_areas = []
+binary_images = []
+
+for d, i in ndwi_img_lst:
+    thresh = threshold_minimum(i)
+    binary = i > thresh
+    
+    binary_images.append(binary)
+    
+    estimated_surface_area = (binary.flatten().sum() * (30 ** 2))
+    est_surface_areas += [(d, estimated_surface_area)]
+
+    fig, axes = plt.subplots(ncols=2, figsize=(8, 3))
+    ax = axes.ravel()
+
+    ax[0].imshow(i, cmap=plt.cm.gray)
+    ax[0].set_title('Orginal: {}'.format(d))
+
+    ax[1].imshow(binary, cmap=plt.cm.gray)
+    ax[1].set_title('Result: {}\nEstimated Surface Area: {} meters squared'.format(d, estimated_surface_area))
+
+    for a in ax:
+        a.axis('off')
+
+    plt.show()
+```
+</p>
 
 
 ## **3. Results**
+<p style="text-align:center">
+        <b>Successfully Thresholded Image</b>
+</p>
+<p style="text-align:center">
+    <img src="resources/thresh_image.png">
+</p>
+<p style="text-align:center">
+        <b>Thresholded Image with Missing Data</b>
+</p>
+<p style="text-align:center">
+    <img src="resources/broken_thresh.png">
+</p>
+<p style="text-align:center">
+        <b>Thresholded Image with Cloud Noise</b>
+</p>
+<p style="text-align:center">
+    <img src="resources/cloudy_thresh.png">
+</p>
+<p>
+    After discarding images with missing data and noise, we performed more analysis on the successfully classified images. Specifically we looked to determine where the permanent and ephemeral water resided within Lake Oroville. To clarify, ephemeral water is water that only flows in response to precipitation and lacks a clearly defined channel. We defined ephemeral water as water that does not appear in greater than 70% of our images. 
+</p>
+<p style="text-align:center">
+        <b>Permanent Water with Threshold of 70%</b>
+</p>
+<p style="text-align:center">
+    <img src="resources/0.7.png">
+</p>
+<p>
+    The above image was generated with the following code block, please note that we looked at various thresholds and decided that 0.7 made the most sense.
+    
+    for thresh in [.5, .6, .7, .8, .9, .95]:
+        avg_pixel = np.mean(t, 0)
+        
+        perm = avg_pixel > thresh # gets average of each pixel across all 80 images
+        ephemeral = np.where((avg_pixel > 0.1) & (avg_pixel <= thresh), avg_pixel, 0)
+        
+        esa_perm = (perm.flatten().sum() * (30 ** 2)) # estimates surface area for permanent water
+        esa_ephemeral = (ephemeral.flatten().sum() * (30 ** 2)) # estimates surface area for ephemeral water
 
+        fig, axes = plt.subplots(ncols=1, figsize=(8, 5))
+
+        axes.imshow(perm, cmap=plt.cm.Blues)
+        axes.set_title('Permanent Water Threshold: {}'.format(thresh))
+        
+        axes.imshow(ephemeral, cmap=plt.cm.Reds, alpha=0.35)
+        axes.set_title('Permanent Water Threshold: {}'.format(thresh))
+            
+        plt.show()
+
+</p>
 
 
 ## **4. Discussion**
+<p>
+    As seen in our results section, our current model produces results that fall into one of three categories: successful thresholding, failure due to missing data, or failure due to noise. Most of our data can be successfully thresholded with our current methods, however there are some processed NDWI images that were generated with missing data thus implying water where there should not be. Another failed scenario occurs when the images captured by LANDSAT are muddied by clouds or other noise that cause specific bands to be nearly unusable. We also found a general upward trend of water surface area until about 2021, where there was a sharp drop-off. This can be observed in Table n and Figure n, however we do not have much confidence in the validity of these results as the amount of  image data varies from year to year, which would ultimately affect our surface area estimates.
+</p>
+<p>
+    Our results are similar to other granular analysis of small bodies of water up until 2020, as an analysis of inland water in Sri Lanka [2] found a similar upwards trend in water surface area. However, our results require more image data to increase the confidence level of our predictions. Our approach is limited upon the availability of image data for Lake Oroville, and the time limitation for this quarter. Our approach can be improved upon by 1. obtaining more image data and 2. preparing the images through a pre-processing pipeline in order to mitigate noise and other issues as much as possible. More in depth analysis on the channels of water from Lake Oroville as well as the intra-annual changes and patterns would also be an interesting topic to further explore.
 
+</p>
 
 
 ## **5. References**
