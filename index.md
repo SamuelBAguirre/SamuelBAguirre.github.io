@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-# **Changes in the Volume of Surface Water in Lake Oroville**
+# **Changes in the Area of Surface Water in Lake Oroville**
 
 
 ## **Abstract**
