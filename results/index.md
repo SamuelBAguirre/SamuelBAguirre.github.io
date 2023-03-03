@@ -1,3 +1,8 @@
+---
+layout: default
+title: Results
+---
+
 ## **Results**
 <p style="text-align:center">
         <b>Successfully Thresholded Image</b>

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Discussion
+---
+
 ## **Discussion**
 <p>
     As seen in our results section, our current model produces results that fall into one of three categories: successful thresholding, failure due to missing data, or failure due to noise. Most of our data can be successfully thresholded with our current methods, however there are some processed NDWI images that were generated with missing data thus implying water where there should not be. Another failed scenario occurs when the images captured by LANDSAT are muddied by clouds or other noise that cause specific bands to be nearly unusable. We also found a general upward trend of water surface area until about 2021, where there was a sharp drop-off. This can be observed in Table n and Figure n, however we do not have much confidence in the validity of these results as the amount of  image data varies from year to year, which would ultimately affect our surface area estimates.
