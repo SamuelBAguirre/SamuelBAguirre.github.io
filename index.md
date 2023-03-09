@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-# **Changes in the Area of Surface Water in Lake Oroville**
+# **Examining the Spatiotemporal Dynamics of Lake Oroville’s Area with NDWI Indicies from Landsat 8 TOA Image Data**
 
 
 ## **Abstract**
