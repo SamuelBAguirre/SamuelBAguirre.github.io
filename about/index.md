@@ -9,7 +9,6 @@ title: About Us
     <img src="https://www.seekpng.com/png/detail/966-9665317_placeholder-image-person-jpg.png" alt="Jane" style="width:10%">
     <h2>Samuel Aguirre</h2>
     <p class="title">Student Researcher</p>
-    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
     <p>saguirre@ucsd.edu</p>
 </div>
 
@@ -19,7 +18,6 @@ title: About Us
     <img src="https://www.seekpng.com/png/detail/966-9665317_placeholder-image-person-jpg.png" alt="Mike" style="width:10%">
     <h2>James Lu</h2>
     <p class="title">Student Researcher</p>
-    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
     <p>jqlu@ucsd.edu</p>
 </div>
 
@@ -29,6 +27,5 @@ title: About Us
     <img src="https://www.seekpng.com/png/detail/966-9665317_placeholder-image-person-jpg.png" alt="Mike" style="width:10%">
     <h2>Dr. Armin Schwartzmann</h2>
     <p class="title">Professor / Mentor</p>
-    <p>Some text that describes me lorem ipsum ipsum lorem.</p>
     <p>armins@ucsd.edu</p>
 </div>

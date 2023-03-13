@@ -22,6 +22,12 @@ title: Results
 <p style="text-align:center">
     <img src="../resources/cloudy_thresh.png" style="width:560px">
 </p>
+<p style="text-align:center">
+        <b>Yearly Average Surface Area of Lake Oroville</b>
+</p>
+<p style="text-align:center">
+    <img src="../resources/line_plot_lake_oroville_area.png" style="width:560px">
+</p>
 <p>
     After discarding images with missing data and noise, we performed more analysis on the successfully classified images. Specifically we looked to determine where the permanent and ephemeral water resided within Lake Oroville. To clarify, ephemeral water is water that only flows in response to precipitation and lacks a clearly defined channel. We defined ephemeral water as water that does not appear in greater than 70% of our images. 
 </p>
